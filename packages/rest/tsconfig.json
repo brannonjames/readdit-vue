@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "noImplicitAny": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "isolatedModules": true,
+    "typeRoots": ["./index.d.ts", "./node_modules/@types"]
+  },
+//  "exclude": ["node_modules"]
+}

@@ -1,0 +1,71 @@
+// SPACING
+$spacing-xsm: 2px;
+$spacing-sm: 6px;
+$spacing-md: 12px;
+$spacing-lg: 24px;
+$spacing-xlg: 36px;
+$spacing-xxlg: 48px;
+
+// COLORS
+$white: #FFF;
+$grey1: #b8bbc2;
+$grey2: #898b91;
+$grey3: #363c47;
+$grey4: #1f2229;
+
+$color-primary: #4ab6f7;
+
+
+$font-color-primary: $white;
+$background-color: #363c47;
+$input-background-color: #1f2229;
+
+// COMMON MIXINS
+@mixin grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: start;
+  column-gap: $spacing-lg;
+  row-gap: $spacing-lg;
+}
+
+@mixin hoverable {
+  &:hover { cursor: pointer; }
+}
+
+@mixin list-item {
+  display: flex;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid $grey2;
+  word-break: break-word;
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+// FONT MIXINS
+@mixin text-field {
+  color: $font-color-primary;
+  background-color: $input-background-color;
+  border: none;
+}
+
+@mixin font-body-bold($size) {
+  color: $font-color-primary;
+  font-weight: 700;
+  font-size: $size;
+}
+
+// MEDIA QUERIES
+@mixin screen-sm {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+
+@mixin screen-md {
+  @media screen and (max-width: 1100px) {
+    @content;
+  }
+}

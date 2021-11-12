@@ -1,0 +1,41 @@
+service: rest
+
+frameworkVersion: '2'
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-plugin-optimize
+  - serverless-plugin-monorepo
+  - serverless-localstack
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - 'node_modules/epub-gen/**'
+
+functions:
+  api:
+    handler: ./src/handler.api
+    events:
+      - http:
+            path: /
+            method: POST
+            cors: true
+      - http:
+          path: /api
+          method: POST
+          cors: true
+
+custom:
+  localstack:
+    debug: true
+    stages:
+      - local
+      - dev
+    host: http://localhost  # optional - LocalStack host to connect to
+    edgePort: 4566  # optional - LocalStack edge port to connect to
+    autostart: false  # optional - Start LocalStack in Docker on Serverless deploy

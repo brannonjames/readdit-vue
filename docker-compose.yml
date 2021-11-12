@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack-readdit
+    ports:
+      - 4566:4566
+    environment:
+      SERVICES: lambda, apigateway, cloudwatch, iam, events, sts, cloudformation, s3, route53, ses
+      DEBUG: 1
+      DATA_DIR: /tmp/localstack/data
+      LAMBDA_EXECUTOR: docker-reuse
+      DEFAULT_REGION: us-east-1
+      USE_SINGLE_REGION: 'true'
+      EXTRA_CORS_ALLOWED_HEADERS: '*'
+      EXTRA_CORS_EXPOSE_HEADERS: '*'
+    volumes:
+      - aws:/tmp/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+volumes:
+  aws:
